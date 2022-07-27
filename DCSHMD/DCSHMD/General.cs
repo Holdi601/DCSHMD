@@ -55,7 +55,7 @@ namespace DCSHMD
         {
             msg = DateTime.UtcNow.ToString() + "\t" + msg;
             Console.WriteLine(msg);
-            File.AppendAllText(Environment.CurrentDirectory + "\\log", msg);
+            File.AppendAllText(Environment.CurrentDirectory + "\\log", msg+"\r\n");
         }
 
         public static string ToXML<T>(T value)

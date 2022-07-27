@@ -28,10 +28,12 @@ namespace DCSHMD
             SetupListeners();
             General.LoadMetaLast();
             General.ApplyWindow(this);
+            General.Write("Init Success");
         }
 
         public void SetupListeners()
         {
+            General.Write("Listeners Setup");
             CloseOverlayBtn.Click += CloseOverlay;
             OpenOverlayBtn.Click += OpenOverlay;
             InstallScriptBtn.Click += InstallScript;
@@ -42,30 +44,41 @@ namespace DCSHMD
 
         void SaveCurrentMetaState(object sender, EventArgs e)
         {
+            General.Write("Current State Saved");
             General.SaveMetaInfo(this);
         }
 
         void OpenOverlay(object sender, EventArgs e)
         {
-            
+            General.Write("Open Overlay pressed");
+            DP_Windows wp = new DP_Windows();
+            wp.Anchor_Horizon = HorizontalAlignment.Right;
+            //wp.ColorFG = Brushes.Azure;
+            wp.Anchor_Vertical= VerticalAlignment.Bottom;
+            wp.X = -1111;
+            wp.Y = -232323;
+            wp.Size = 2323;
+            string xml = General.ToXML(wp);
+            General.Write(xml);
         }
 
         void CloseOverlay(object sender, EventArgs e)
         {
-
+            General.Write("Close Overlay pressed");
         }
 
         void InstallScript(object sender, EventArgs e)
         {
-
+            General.Write("Install Script pressed");
         }
         void UninstallScript(object sender, EventArgs e)
         {
-
+            General.Write("Uninstall Script pressed");
         }
 
         void FillUnits()
         {
+            General.Write("Dropdown filling");
             CoordinatesDD.Items.Clear();
             CoordinatesDD.Items.Add("N00'00\"00.0 E000'00\"00.00");
             CoordinatesDD.Items.Add("N00'00.000 E000'00.000");
