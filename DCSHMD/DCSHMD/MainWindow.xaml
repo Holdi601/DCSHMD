@@ -1,0 +1,25 @@
+﻿<Window x:Class="DCSHMD.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DCSHMD"
+        mc:Ignorable="d"
+        Title="DCS HMD" Height="450" Width="800">
+    <Grid Background="#FF1D1D1D">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+        <Button Content="Open Overlay" Name="OpenOverlayBtn" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Grid.Row="0" Width="100" Height="20"/>
+        <Button Content="Close Overlay" Name="CloseOverlayBtn" HorizontalAlignment="Left" Margin="120,10,0,0" VerticalAlignment="Top" Grid.Row="0" Width="100" Height="20"/>
+        <Button Content="Install Script" Name="InstallScriptBtn" HorizontalAlignment="Left" Margin="230,10,0,0" VerticalAlignment="Top" Grid.Row="0" Width="100" Height="20"/>
+        <Button Content="Uninstall Script" Name="UninstallScriptBtn" HorizontalAlignment="Left" Margin="340,10,0,0" VerticalAlignment="Top" Grid.Row="0" Width="100" Height="20"/>
+        <Label Content="Flight Units:" HorizontalAlignment="Left" Margin="10,0,0,0" Grid.Row="2" VerticalAlignment="Top" Foreground="White"/>
+        <Label Content="Coordinate System:" HorizontalAlignment="Left" Margin="300,0,0,0" Grid.Row="2" VerticalAlignment="Top" Foreground="White"/>
+        <ComboBox Name="FlightUnitsDD" HorizontalAlignment="Left" Margin="10,25,0,0" Grid.Row="2" VerticalAlignment="Top" Width="120"/>
+        <ComboBox Name="CoordinatesDD" HorizontalAlignment="Left" Margin="300,25,0,0" Grid.Row="2" VerticalAlignment="Top" Width="120"/>
+        <ScrollViewer Grid.Row="1" Name="SV" />
+    </Grid>
+</Window>
