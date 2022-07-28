@@ -71,6 +71,7 @@ namespace DCSHMD
         public string Type { get; set; }
         public string Reference { get; set; }
         public DP_Windows Disp { get; set; }
+        public bool Show { get; set; }
 
     }
 }

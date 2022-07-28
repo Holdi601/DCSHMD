@@ -9,10 +9,24 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Lua\Addative.lua" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Lua\Addative.lua">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
     <None Include="..\.editorconfig" Link=".editorconfig" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Config\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
   </ItemGroup>
 </Project>

@@ -25,8 +25,9 @@ namespace DCSHMD
         {
             InitializeComponent();
             FillUnits();
-            SetupListeners();
+            General.Init();
             General.LoadMetaLast();
+            SetupListeners();
             General.ApplyWindow(this);
             General.Write("Init Success");
         }
@@ -53,7 +54,6 @@ namespace DCSHMD
             General.Write("Open Overlay pressed");
             DP_Windows wp = new DP_Windows();
             wp.Anchor_Horizon = HorizontalAlignment.Right;
-            //wp.ColorFG = Brushes.Azure;
             wp.Anchor_Vertical= VerticalAlignment.Bottom;
             wp.X = -1111;
             wp.Y = -232323;
@@ -69,11 +69,13 @@ namespace DCSHMD
 
         void InstallScript(object sender, EventArgs e)
         {
-            General.Write("Install Script pressed");
+            General.InstallScript();
+            General.Write("Script installed");
         }
         void UninstallScript(object sender, EventArgs e)
         {
-            General.Write("Uninstall Script pressed");
+            General.UninstallScript();
+            General.Write("Script uninstalled");
         }
 
         void FillUnits()
