@@ -10,6 +10,8 @@ using System.Xml;
 using System.Xml.Serialization;
 using System.Windows;
 using System.Threading;
+using System.Windows.Controls;
+using org.mariuszgromada.math.mxparser;
 
 namespace DCSHMD
 {
@@ -19,24 +21,47 @@ namespace DCSHMD
     {
         public static MetaInfo Current;
         public static MainWindow MainWindow;
+        public static Overlay overlay;
         const string MYDOCFOLDER = "\\DCSHMD";
         static string metaFileName = "\\meta.xml";
         public static Thread DCSServerThread;
+        public static Thread AssignThread;
+        public static ValueAssignmentThread ValueAssignment;
         public static Settings Settings;
         public static DCSServer DCSServer;
         public static Thread UIAssigningTextThread;
         static string LogFile = "\\log";
         static string callScript = "dofile(lfs.writedir()..[[Scripts\\Export_DCSHMD.lua]])";
+        public static Dictionary<string, DP_Windows> SourceElements = new Dictionary<string, DP_Windows>();
+        public static Dictionary<string, string> SourceElementTypes = new Dictionary<string, string>();
+        public static Dictionary<string, Label> ElementLabels = new Dictionary<string, Label>();
+        public static Dictionary<string, Function> ElementsCalc = new Dictionary<string, Function>();
 
-        public static void SaveMetaInfo(MainWindow mw)
+
+        public static void StopThreads(object sender, EventArgs e)
         {
-            Current = new MetaInfo(mw);
+            if (DCSServer != null) DCSServer.quit = true;
+
+        }
+
+        public static void SaveMetaInfo(Window mw)
+        {
+            if(mw is MainWindow)
+            {
+                Current = new MetaInfo(mw);
+            }else if(mw is Overlay)
+            {
+                Current.Overlay = new WindowMeta(mw);
+            }
+            
             string path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)+ MYDOCFOLDER;
             if(!Directory.Exists(path))Directory.CreateDirectory(path);
             string xml = ToXML(Current);
             Write(xml);
             File.WriteAllText(path + metaFileName, xml);
         }
+
+
 
         public static void Init()
         {
@@ -110,7 +135,23 @@ namespace DCSHMD
         public static void InstallScript()
         {
             StreamReader sr = new StreamReader(Environment.CurrentDirectory + "\\Lua\\Addative.lua");
-            string contentAddative = sr.ReadToEnd();
+            string contentAddative="";
+            while (!sr.EndOfStream)
+            {
+                string current = sr.ReadLine()+ "\r\n";
+                if (!current.Contains("%%INSERTHERE%%"))
+                {
+                    contentAddative += current;
+                }
+                else
+                {
+                    for(int i = 0; i < SourceElements.Count; i++)
+                    {
+                        if (i == SourceElements.Count - 1) contentAddative += SourceElements.ElementAt(i).Value.ToLuaLine(true);
+                        else contentAddative += SourceElements.ElementAt(i).Value.ToLuaLine(false);
+                    }
+                }
+            }
             sr.Close();
             sr.Dispose();
             foreach (string pth in GetDCSUserFolder())
@@ -163,7 +204,7 @@ namespace DCSHMD
                 try
                 {
                     string xml = File.ReadAllText(confPath);
-                    Settings = LoadFromjsonstring<Settings>(xml);
+                    Settings = LoadFromXMLstring<Settings>(xml);
                     Write("Settings XML Loaded");
                 }
                 catch (Exception e)
@@ -195,7 +236,8 @@ namespace DCSHMD
             if (!Directory.Exists(path)) return;
             if (!File.Exists(path + metaFileName)) return;
             string xml = File.ReadAllText(path + metaFileName);
-            Current= LoadFromjsonstring<MetaInfo>(xml);
+            Current= LoadFromXMLstring<MetaInfo>(xml);
+            LoadElements(null, null);
         }
 
         public static void ApplyWindow(Window w)
@@ -225,12 +267,57 @@ namespace DCSHMD
             }
         }
 
-        public static T LoadFromjsonstring<T>(string xmlText) where T : class
+        public static T LoadFromXMLstring<T>(string xmlText) where T : class
         {
             using (var stringReader = new System.IO.StringReader(xmlText))
             {
                 var serializer = new XmlSerializer(typeof(T));
                 return serializer.Deserialize(stringReader) as T;
+            }
+        }
+
+        public static void SaveElements(object sender, EventArgs e)
+        {
+            string path = Environment.CurrentDirectory + "\\Elements\\";
+            if(!Directory.Exists(path))Directory.CreateDirectory(path);
+            foreach(KeyValuePair<string, DP_Windows> kvp in SourceElements)
+            {
+                string xml = ToXML(kvp.Value);
+                string final = "";
+                if(kvp.Value is DP_Windows_Text)
+                {
+                    final = path+"text_" + kvp.Value.Name + ".xml";
+                }
+                else
+                {
+                    final= path + kvp.Value.Name + ".xml";
+                }
+                File.WriteAllText(final, xml);
+            }
+        }
+
+        public static void LoadElements(object sender, EventArgs e)
+        {
+            if (!Directory.Exists(Environment.CurrentDirectory + "\\Elements\\")) return;
+            DirectoryInfo dirinf = new DirectoryInfo(Environment.CurrentDirectory+"\\Elements\\");
+            FileInfo[] files = dirinf.GetFiles();
+            foreach (FileInfo file in files)
+            {
+                if(file.Name.EndsWith(".xml"))
+                {
+                    string ngl = File.ReadAllText(file.FullName);
+                    if (file.Name.StartsWith("text_"))
+                    {
+                        DP_Windows_Text dpt = LoadFromXMLstring<DP_Windows_Text>(ngl);
+                        SourceElements.Add(dpt.Name, dpt);
+                        dpt.CreateUpdateElements();
+                    }
+                    else
+                    {
+                        DP_Windows dp = LoadFromXMLstring<DP_Windows>(ngl);
+                        SourceElements.Add(dp.Name, dp);
+                    }
+                }
             }
         }
 

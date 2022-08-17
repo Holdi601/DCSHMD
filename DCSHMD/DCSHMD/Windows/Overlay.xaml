@@ -1,0 +1,18 @@
+﻿<Window x:Class="DCSHMD.Overlay"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DCSHMD"
+        mc:Ignorable="d"
+        Title="Overlay" Height="450" Width="800" AllowsTransparency="True" WindowStyle="None">
+    <Window.Background>
+        <SolidColorBrush Opacity="0.0" Color="White" />
+    </Window.Background>
+    <Grid Name="MainGrid">
+        <Border Name="MainBorder" BorderBrush="Lime" BorderThickness="2" />
+        <Button Name="CloseBtn" Content="X" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Top" Padding="-2,-6,0,0" Margin="0,0,0,0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Foreground="Lime" Width="50" Height="50" FontSize="35" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+        <Label Name="MoveLabel" Content="☻" Foreground="Lime" Grid.Row="0" HorizontalAlignment="Left"  FontSize="25" Margin="50,0,0,0" Grid.Column="1" MaxWidth="100" />
+    </Grid>
+    
+</Window>

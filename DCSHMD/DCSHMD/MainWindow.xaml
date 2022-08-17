@@ -9,6 +9,7 @@
     <Grid Background="#FF1D1D1D">
         <Grid.RowDefinitions>
             <RowDefinition Height="50"/>
+            <RowDefinition Height="30"/>
             <RowDefinition/>
             <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
@@ -16,10 +17,9 @@
         <Button Content="Close Overlay" Name="CloseOverlayBtn" HorizontalAlignment="Left" Margin="120,10,0,0" VerticalAlignment="Top" Grid.Row="0" Width="100" Height="20"/>
         <Button Content="Install Script" Name="InstallScriptBtn" HorizontalAlignment="Left" Margin="230,10,0,0" VerticalAlignment="Top" Grid.Row="0" Width="100" Height="20"/>
         <Button Content="Uninstall Script" Name="UninstallScriptBtn" HorizontalAlignment="Left" Margin="340,10,0,0" VerticalAlignment="Top" Grid.Row="0" Width="100" Height="20"/>
-        <Label Content="Flight Units:" HorizontalAlignment="Left" Margin="10,0,0,0" Grid.Row="2" VerticalAlignment="Top" Foreground="White"/>
-        <Label Content="Coordinate System:" HorizontalAlignment="Left" Margin="300,0,0,0" Grid.Row="2" VerticalAlignment="Top" Foreground="White"/>
-        <ComboBox Name="FlightUnitsDD" HorizontalAlignment="Left" Margin="10,25,0,0" Grid.Row="2" VerticalAlignment="Top" Width="120"/>
-        <ComboBox Name="CoordinatesDD" HorizontalAlignment="Left" Margin="300,25,0,0" Grid.Row="2" VerticalAlignment="Top" Width="120"/>
-        <ScrollViewer Grid.Row="1" Name="SV" />
+        <Button Content="Save" Name="SaveBtn" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Grid.Row="3" Width="100" Height="20"/>
+        <Button Content="Add" Name="AddBtn" HorizontalAlignment="Left" Margin="120,10,0,0" VerticalAlignment="Top" Grid.Row="3" Width="100" Height="20"/>
+        <ScrollViewer Grid.Row="2" Name="SV" />
+        <ScrollViewer Grid.Row="1" Name="SVHeaders" />
     </Grid>
 </Window>

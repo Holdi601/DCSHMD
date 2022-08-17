@@ -5,14 +5,41 @@
     <TargetFramework>net6.0-windows</TargetFramework>
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
+	<UseWindowsForms>true</UseWindowsForms>
     <Platforms>AnyCPU;x64</Platforms>
+    <ApplicationIcon>icon.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Elements\text_Altitude.xml" />
+    <None Remove="Elements\text_AltitudeSea.xml" />
+    <None Remove="Elements\text_Climb.xml" />
+    <None Remove="Elements\text_Heading.xml" />
+    <None Remove="Elements\text_IAS.xml" />
+    <None Remove="Elements\text_Mach.xml" />
     <None Remove="Lua\Addative.lua" />
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="Elements\text_Altitude.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Elements\text_AltitudeSea.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Elements\text_Climb.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Elements\text_Heading.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Elements\text_IAS.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Elements\text_Mach.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icon.ico" />
     <Content Include="Lua\Addative.lua">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -27,6 +54,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="MathParser.org-mXparser" Version="5.0.6" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
   </ItemGroup>
 </Project>

@@ -15,15 +15,19 @@ namespace DCSHMD
 {
     public class DCSServer
     {
-        public dynamic CurrentValue = null;
+        public Dictionary<string, string> CurrentValue = null;
+        public bool TelemetryOutput = false;
+        public bool quit = false;
         public void StartDCSListener()
         {
             try
             {
+                if (quit) return;
                 TcpListener listener = new TcpListener(IPAddress.Parse(General.Settings.IP), General.Settings.Port);
                 listener.Start();
                 General.Write("DCS Listener started");
                 Stopwatch stopWatch = new Stopwatch();
+                stopWatch.Start();
                 
                 while (true)
                 {
@@ -34,11 +38,17 @@ namespace DCSHMD
                     string s = string.Empty;
                     while (true)
                     {
+                        if (quit) return;
                         s = reader.ReadLine();
                         if (s == "exit") break;
                         else
                         {
-                            CurrentValue = JsonConvert.DeserializeObject<dynamic>(s);
+                            if (TelemetryOutput) File.AppendAllText(General.Settings.TelemetryOuptut,"[" + DateTime.UtcNow + "] " + s);
+                            CurrentValue = JsonConvert.DeserializeObject<Dictionary<string, string>>(s);
+                            //General.Write(stopWatch.ElapsedMilliseconds.ToString());
+                            stopWatch.Stop();
+                            CurrentValue.Add("FRAMETIME", stopWatch.ElapsedMilliseconds.ToString());
+                            stopWatch.Restart();
                         }
                     }
                     reader.Close();
@@ -50,6 +60,7 @@ namespace DCSHMD
             {
                 General.NoteError(ex);
                 Thread.Sleep(500);
+                if (quit) return;
             }
             StartDCSListener();
         }

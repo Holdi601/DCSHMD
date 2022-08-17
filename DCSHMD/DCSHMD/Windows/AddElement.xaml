@@ -1,0 +1,44 @@
+﻿<Window x:Class="DCSHMD.AddElement"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DCSHMD"
+        mc:Ignorable="d"
+        Title="ADD OR EDIT ELEMENT" Height="135" Width="1874">
+    <Grid Background="#FF1D1D1D">
+        <Label Content="Name:" HorizontalAlignment="Left" Margin="30,0,0,0" VerticalAlignment="Top" Foreground="White"/>
+        <Label Content="Type:" HorizontalAlignment="Left" Margin="230,0,0,0" VerticalAlignment="Top" Foreground="White"/>
+        <TextBox Name="NameTB" HorizontalAlignment="Left" Margin="10,25,0,0" TextWrapping="Wrap" Text="Name" VerticalAlignment="Top" Width="120"/>
+        <CheckBox Content="Show" Name="ShowCB" HorizontalAlignment="Left" Margin="140,25,0,0" VerticalAlignment="Top" Foreground="White"/>
+        <ComboBox Name="TypeCB" HorizontalAlignment="Left" Margin="200,25,0,0" VerticalAlignment="Top" Width="120"/>
+        <Label Content="Calculation:" HorizontalAlignment="Left" Margin="360,0,0,0" VerticalAlignment="Top" Foreground="White"/>
+        <Label Content="X:" HorizontalAlignment="Left" Margin="500,0,0,0" VerticalAlignment="Top" Foreground="White"/>
+        <Label Content="Y:" HorizontalAlignment="Left" Margin="580,0,0,0" VerticalAlignment="Top" Foreground="White"/>
+        <Label Content="Size:" HorizontalAlignment="Left" Margin="650,0,0,0" VerticalAlignment="Top" Foreground="White"/>
+        <Label Content="Lua:" HorizontalAlignment="Left" Margin="760,0,0,0" VerticalAlignment="Top" Foreground="White"/>
+        <Label Content="Horizontal Anchor:" HorizontalAlignment="Left" Margin="860,0,0,0" VerticalAlignment="Top" Foreground="White"/>
+        <Label Content="Vertical Anchor:" HorizontalAlignment="Left" Margin="1010,0,0,0" VerticalAlignment="Top" Foreground="White"/>
+        <Label Content="Font:" Name="FontLbl" HorizontalAlignment="Left" Margin="1180,0,0,0" VerticalAlignment="Top" Foreground="White"/>
+        <Label Content="PreText:" Name="PreTxtLbl" HorizontalAlignment="Left" Margin="1500,0,0,0" VerticalAlignment="Top" Foreground="White"/>
+        <Label Content="PostText:" Name="PostTxtLbl" HorizontalAlignment="Left" Margin="1650,0,0,0" VerticalAlignment="Top" Foreground="White"/>
+        <Label Content="Rounding:" Name="RoundLbl" HorizontalAlignment="Left" Margin="1780,0,0,0" VerticalAlignment="Top" Foreground="White"/>
+        <TextBox Name="CalcTB" HorizontalAlignment="Left" Margin="340,25,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <TextBox Name="XTB" HorizontalAlignment="Left" Margin="480,25,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="60"/>
+        <TextBox Name="YTB" HorizontalAlignment="Left" Margin="560,25,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="60"/>
+        <TextBox Name="SizeTB" HorizontalAlignment="Left" Margin="640,25,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="60"/>
+        <TextBox Name="LuaTB" HorizontalAlignment="Left" Margin="720,25,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <ComboBox Name="HorAnchCB" HorizontalAlignment="Left" Margin="860,25,0,0" VerticalAlignment="Top" Width="120"/>
+        <ComboBox Name="VerAnchCB" HorizontalAlignment="Left" Margin="1000,25,0,0" VerticalAlignment="Top" Width="120"/>
+        <ComboBox Name="FontCB" HorizontalAlignment="Left" Margin="1140,25,0,0" VerticalAlignment="Top" Width="120"/>
+        <Button Content="Color" Name="ColorBtn" Width="100" HorizontalAlignment="Left" Margin="1280,1,0,0" VerticalAlignment="Top"/>
+        <CheckBox Content="Boxed" Name="BoxedCheck" HorizontalAlignment="Left" Margin="1400,5,0,0" VerticalAlignment="Top" Foreground="White"/>
+        <TextBox Name="PreTB" HorizontalAlignment="Left" Margin="1470,25,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <TextBox Name="BorderThickTB" HorizontalAlignment="Left" Margin="1390,25,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="70"/>
+        <TextBox Name="AlphaTB" HorizontalAlignment="Left" Margin="1295,25,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="70"/>
+        <TextBox Name="PostTB" HorizontalAlignment="Left" Margin="1610,25,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <TextBox Name="RoundingTB" HorizontalAlignment="Left" Margin="1750,25,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <Button Content="OK" Name="OKBtn" HorizontalAlignment="Left" Margin="10,60,0,0" VerticalAlignment="Top" Width="80"/>
+        <Button Content="Cancel" Name="CancelBtn" HorizontalAlignment="Left" Margin="110,60,0,0" VerticalAlignment="Top" Width="80"/>
+    </Grid>
+</Window>
